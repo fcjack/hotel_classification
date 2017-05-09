@@ -1,3 +1,4 @@
+from core.review_processor import ReviewProcessor
 from core.synonyms_service import SynonymsService
 
 
@@ -5,6 +6,7 @@ class Application(object):
     def __init__(self, hotel_reviews):
         self.hotel_reviews = hotel_reviews
         self.synonym_service = SynonymsService()
+        self.review_processor = ReviewProcessor()
 
     def process_topic(self, topic):
         statistics_by_hotel = []
@@ -14,7 +16,7 @@ class Application(object):
             synonyms = self.synonym_service.get_synonym(topic)
 
         for hotel_review in self.hotel_reviews:
-            statistics = self._get_statistics_by_topic(topic, hotel_review, synonyms)
+            statistics = self.review_processor.process_topic(hotel_review, topic, synonyms)
             statistics_by_hotel.append(statistics)
 
         statistics_by_hotel.sort(key=lambda current_statistics: current_statistics.score, reverse=True)
