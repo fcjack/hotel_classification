@@ -1,4 +1,8 @@
+import os
+import sys
 import unittest
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '../src'))
 
 from core.score_calculator import ScoreCalculatorService
 
@@ -25,3 +29,7 @@ class ScoreCalculatorTest(unittest.TestCase):
         score_calculator_service = ScoreCalculatorService()
         topic_statistics_by_hotel = score_calculator_service.process_statistics("room", all_phrase, {"HotelID": 123121})
         self.assertEqual(topic_statistics_by_hotel.score, 4)
+
+
+if __name__ == '__main__':
+    unittest.main()
