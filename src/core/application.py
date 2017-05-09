@@ -27,12 +27,12 @@ class Application(object):
             print("%s   %s" % (str(i + 1), str(statistics)))
 
     def _get_statistics_by_topic(self, topic, hotel_review, synonyms):
-        statistics = self.statistics_service.get_statistics_by_topic_and_hotel(topic, hotel_review.hotel_info)
+        statistics = self.statistics_service.get_statistics_by_topic_and_hotel(topic, hotel_review)
 
         if statistics is None:
             statistics = self.review_processor.process_topic(hotel_review, topic, synonyms)
-            self.statistics_service.add_statistics_by_topic_and_hotel(hotel_review.hotel_info, topic, statistics)
+            self.statistics_service.add_statistics_by_topic_and_hotel(hotel_review, topic, statistics)
             for synonym in synonyms:
-                self.statistics_service.add_statistics_by_topic_and_hotel(hotel_review.hotel_info, synonym, statistics)
+                self.statistics_service.add_statistics_by_topic_and_hotel(hotel_review, synonym, statistics)
 
         return statistics
