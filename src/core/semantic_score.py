@@ -2,6 +2,16 @@ import json
 
 
 def _get_possible_match(possible_matches, word, possibilities, match_type):
+    """
+        This function will check each possibility received if start with the word.
+        If starts with the word so we have a real possibility, if don` start
+        this possibility is unconsidered.
+    
+    :param possible_matches: 
+    :param word: 
+    :param possibilities: 
+    :param match_type: 
+    """
     for possibility in possibilities:
         list_words = possibility['key'].split()
         if word == list_words[0]:

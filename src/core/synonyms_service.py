@@ -13,6 +13,15 @@ class SynonymsService(object):
         }
 
     def get_synonym(self, word):
+        """
+            This method will check if the word requested is mapped on dictionary of synonyms that
+            we have declared, if the word is not mapped on keys or in one of the values of the keys,
+            the word will be searched using NLTK with wordnet to get synonyms.
+            
+            As result a list of synonyms will be returned
+        
+        :param word: 
+        """
         if word in self.synonyms.keys():
             return set(self.synonyms[word])
 

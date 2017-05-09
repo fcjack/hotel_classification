@@ -4,6 +4,11 @@ from core.score_calculator import ScoreCalculatorService
 
 
 def _get_sentences(reviews):
+    """
+        This function will retorn all sentences that exists on reviews
+    :param reviews: 
+    :return: 
+    """
     all_sentences = []
     for review in reviews:
         sent_tokenize_list = sent_tokenize(review["Content"])
@@ -13,6 +18,13 @@ def _get_sentences(reviews):
 
 
 def _classify_sentence_by_topic(all_sentences_list, topic, synonyms):
+    """
+        This method will group the sentences that have relation with the topic requested
+         or a synonym for the topic
+    :param all_sentences_list: 
+    :param topic: 
+    :param synonyms: 
+    """
     topic_sentence = set()
 
     if len(topic) == 0:
