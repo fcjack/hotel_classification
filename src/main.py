@@ -36,5 +36,8 @@ if __name__ == '__main__':
 
     while True:
         topic = input("Please, enter the topic that you desire classify the hotels: ")
-        application.process_topic(topic)
-        print("Topic [%s] processed successfully" % topic)
+        if len(topic.split()) > 1:
+            print("Please, only one word topic is allowed")
+        else:
+            application.process_topic(topic)
+            print("Topic [%s] processed successfully" % topic)
